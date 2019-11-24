@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# K Class classifier using Lesat squares Algorithm"
+    "# K Class classifier using Least squares Algorithm"
    ]
   },
   {
@@ -269,7 +269,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.6.5"
+   "version": "3.7.4"
   }
  },
  "nbformat": 4,
