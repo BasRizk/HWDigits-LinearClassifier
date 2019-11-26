@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from utils import get_data
+from utils import create_confusion_matrix, save_and_scale_confusion_matrix
 import numpy as np
-import matplotlib.pyplot as plt
-import math
 import os
 
 # =============================================================================
@@ -13,23 +13,7 @@ test_path = "Test"
 train_labels_path = "Train/Training Labels.txt"
 test_labels_path = "Test/Test Labels.txt"
 weights_dir_path = "naive_bayes_trained_weights"
-
-# =============================================================================
-# -------------------------------Utils
-# =============================================================================
-def get_data(dir_path, labels_path, num_of_imgs): 
-    labels = open(labels_path).readlines()
-    X = np.zeros([num_of_imgs, 784])
-    T_labels = np.zeros([num_of_imgs,1])    
-    for filepath in os.listdir(dir_path):
-        if filepath.endswith(".jpg"):
-            index = int(filepath[:-4]) - 1
-            image_array = plt.imread(os.path.join(dir_path, filepath))\
-                            .flatten()
-            X[index] = image_array
-            T_labels[index] = int(labels[index])
-    X = np.insert(X, X.shape[1], values=1, axis=1)
-    return X, T_labels
+confusion_dir_path = "naive_bayes_confusion"
 
 # =============================================================================
 # -----------------------ALGORITHM IMPLMENTATION
@@ -73,7 +57,8 @@ def gaussian_distribution_probability(x, u, sigma_sqr):
     result = result * np.exp((-((x-u)**2)/(2*sigma_sqr)))
     return result
 
-def naive_bayes_predict(X_sample, u_vector, sigma_sqr_vector):
+def naive_bayes_predict(X_sample, u_vector, sigma_sqr_vector,
+                        one_against_one = False):
     p_class = 1.0
     p_nonclass = 1.0
     for i in range(X_sample.shape[0]):
@@ -86,6 +71,10 @@ def naive_bayes_predict(X_sample, u_vector, sigma_sqr_vector):
                                                         sigma_sqr_vector[i][1])
         
     probability = p_class / p_nonclass
+    
+    if not(one_against_one):
+        return probability
+    
     if (probability > 1):
         return 1
     else:
@@ -126,9 +115,14 @@ for i in range(0, 10):
                                            all_u_vectors[i],
                                            all_sigma_sqr_vectors[i])
 
-
-# TODO CONFUSION MATRIX CALCULATION
-
+# Creating Confusion Matrix
+if not(os.path.exists(confusion_dir_path)):
+    os.makedirs(confusion_dir_path)
+all_predictions_for_confusion = all_predictions.reshape(all_predictions.shape[:-1]).T
+confusion_matrix = create_confusion_matrix(all_predictions_for_confusion, T_test_labels)
+img_filepath = os.path.join(confusion_dir_path,
+                                    "Confusion.jpg")
+save_and_scale_confusion_matrix(confusion_matrix, img_filepath)
 
 
 
