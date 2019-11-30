@@ -8,4 +8,4 @@ Implementing a K-Linear-Discriminant Function (Classifying one-against-many) usi
 **Naive-Bayes Classifier
 
 
-These assignmets were implemented as part of the coursework of "Machine Learning" graduate course, in the German University in Cairo.
+This work was implemented as part of the coursework of "Machine Learning" graduate course, in the German University in Cairo.
