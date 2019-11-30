@@ -40,7 +40,7 @@ def create_confusion_matrix(all_test, T_labels):
         confusion_matrix[T_labels[i,0].astype(int),currentLabel] += 1
     return confusion_matrix
 
-def save_confusion_matrix_plot(confusion_matrix, plot_tile, img_filepath="confusion.png"):
+def save_confusion_matrix_plot(confusion_matrix, plot_tile, img_filepath="confusion.jpg"):
     fig = plt.figure(figsize=(10,8), dpi= 100)
     sns.heatmap(confusion_matrix,cmap='Blues', center=8, annot=True)
 

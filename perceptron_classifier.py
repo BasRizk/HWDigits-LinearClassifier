@@ -113,7 +113,7 @@ if not(os.path.exists(confusion_dir_path)):
     for i in range(0, 10):
         confusion_matrix = create_confusion_matrix(all_predictions[i].T, T_test_labels)
         img_filepath = os.path.join(confusion_dir_path,
-                                    "Confusion-" + str(i) + ".png")
+                                    "Confusion-" + str(i) + ".jpg")
         save_confusion_matrix_plot(confusion_matrix, "Confusion-" + str(i) , img_filepath)
         
 
