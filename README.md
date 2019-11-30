@@ -2,7 +2,9 @@
 Implementing a K-Linear-Discriminant Function (Classifying one-against-many) using different linear descriminator classification functions:
 
 **Least Square Error 
+
 **Perceptron Based
+
 **Naive-Bayes Classifier
 
 
