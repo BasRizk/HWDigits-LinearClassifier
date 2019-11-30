@@ -43,9 +43,15 @@ def create_confusion_matrix(all_test, T_labels):
 def save_confusion_matrix_plot(confusion_matrix, plot_tile, img_filepath="confusion.png"):
     fig = plt.figure(figsize=(10,8), dpi= 100)
     sns.heatmap(confusion_matrix,cmap='Blues', center=8, annot=True)
-    
+
+    # Calculation the accuracy
+    acc = 0;
+    for i in range(0,10):
+      acc += confusion_matrix[i,i]
+    acc /= 2
+
     # Decorations
-    plt.title(plot_tile, fontsize=22)
+    plt.title(plot_tile+", Accuracy: "+str(round(acc,2))+"%", fontsize=22)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.xlim((0,10))

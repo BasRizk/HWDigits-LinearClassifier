@@ -122,7 +122,7 @@ all_predictions_for_confusion = all_predictions.reshape(all_predictions.shape[:-
 confusion_matrix = create_confusion_matrix(all_predictions_for_confusion, T_test_labels)
 img_filepath = os.path.join(confusion_dir_path,
                                     "Confusion.jpg")
-save_confusion_matrix_plot(confusion_matrix,"Confusion.jpg" ,  img_filepath)
+save_confusion_matrix_plot(confusion_matrix,"Confusion" ,  img_filepath)
 
 
 
