@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from utils import get_data, print_progress
-from utils import create_confusion_matrix, save_and_scale_confusion_matrix
+from utils import create_confusion_matrix, save_confusion_matrix_plot
 import numpy as np
 import math
 import os
@@ -113,8 +113,8 @@ if not(os.path.exists(confusion_dir_path)):
     for i in range(0, 10):
         confusion_matrix = create_confusion_matrix(all_predictions[i].T, T_test_labels)
         img_filepath = os.path.join(confusion_dir_path,
-                                    "Confusion-" + str(i) + ".jpg")
-        save_and_scale_confusion_matrix(confusion_matrix, img_filepath)
+                                    "Confusion-" + str(i) + ".png")
+        save_confusion_matrix_plot(confusion_matrix, "Confusion-" + str(i) , img_filepath)
         
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from utils import get_data
-from utils import create_confusion_matrix, save_and_scale_confusion_matrix
+from utils import create_confusion_matrix, save_confusion_matrix_plot
 import numpy as np
 import os
 
@@ -122,7 +122,7 @@ all_predictions_for_confusion = all_predictions.reshape(all_predictions.shape[:-
 confusion_matrix = create_confusion_matrix(all_predictions_for_confusion, T_test_labels)
 img_filepath = os.path.join(confusion_dir_path,
                                     "Confusion.jpg")
-save_and_scale_confusion_matrix(confusion_matrix, img_filepath)
+save_confusion_matrix_plot(confusion_matrix,"Confusion.jpg" ,  img_filepath)
 
 
 

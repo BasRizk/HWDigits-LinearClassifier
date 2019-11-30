@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 import os
 
 # =============================================================================
@@ -38,6 +39,19 @@ def create_confusion_matrix(all_test, T_labels):
         currentLabel = maxValueIndex
         confusion_matrix[T_labels[i,0].astype(int),currentLabel] += 1
     return confusion_matrix
+
+def save_confusion_matrix_plot(confusion_matrix, plot_tile, img_filepath="confusion.png"):
+    fig = plt.figure(figsize=(10,8), dpi= 100)
+    sns.heatmap(confusion_matrix,cmap='Blues', center=8, annot=True)
+    
+    # Decorations
+    plt.title(plot_tile, fontsize=22)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.xlim((0,10))
+    plt.ylim((10,0))
+    fig.savefig(img_filepath)   # save the figure to file
+    plt.close(fig)
 
 def save_and_scale_confusion_matrix(confusion_matrix,
                                     img_filepath = "confusion.jpg"):
